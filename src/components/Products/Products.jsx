@@ -1,6 +1,9 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
+
 import Product from "./Product/Product";
+import useStyles from "./styles";
+
 const products = [
   {
     id: 1,
@@ -19,9 +22,12 @@ const products = [
       "https://www.cnet.com/a/img/resize/2af51dd9015bec1239b4aafa4d491c37206a0bf0/hub/2015/04/07/b35f1174-696c-4d25-8a4f-fa16a2842338/macbook-air-gold-2015-16.jpg?auto=webp&fit=crop&height=900&width=1200",
   },
 ];
+
 const Products = () => {
+  const classes = useStyles();
   return (
-    <main>
+    <main className={classes.content}>
+      <div className={classes.toolbar} />
       <Grid container justifyContent="center" spacing={4}>
         {products.map((product) => (
           <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
