@@ -10,8 +10,8 @@ import {
 } from "@mui/material";
 import { useForm, FormProvider } from "react-hook-form";
 import { commerce } from "../../lib/commerce";
-
-const AddressForm = ({ checkoutToken }) => {
+import { Link } from "react-router-dom";
+const AddressForm = ({ checkoutToken, next }) => {
   const [shippingCountries, setShippingCountries] = useState([]);
   const [shippingCountry, setShippingCountry] = useState("");
   const [shippingSubdivisions, setShippingSubdivisions] = useState([]);
@@ -89,14 +89,23 @@ const AddressForm = ({ checkoutToken }) => {
         Shipping address
       </Typography>
       <FormProvider {...methods}>
-        <form onSubmit="">
+        <form
+          onSubmit={methods.handleSubmit((data) =>
+            next({
+              ...data,
+              shippingCountry,
+              shippingSubdivision,
+              shippingOption,
+            })
+          )}
+        >
           <Grid container spacing={3}>
-            <FormInput required name="firstName" label="First name" />
-            <FormInput required name="lastName" label="Last name" />
-            <FormInput required name="address1" label="Address line 1" />
-            <FormInput required name="email" label="Email" />
-            <FormInput required name="city" label="City" />
-            <FormInput required name="zip" label="Zip / Postal code" />
+            <FormInput name="firstName" label="First name" />
+            <FormInput name="lastName" label="Last name" />
+            <FormInput name="address1" label="Address line 1" />
+            <FormInput name="email" label="Email" />
+            <FormInput name="city" label="City" />
+            <FormInput name="zip" label="Zip / Postal code" />
             <Grid item xs={12} sm={6}>
               <InputLabel>Shipping Country</InputLabel>
               <Select
@@ -141,14 +150,14 @@ const AddressForm = ({ checkoutToken }) => {
             </Grid>
           </Grid>
           <br />
-          {/*     <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
             <Button component={Link} variant="outlined" to="/cart">
               Back to Cart
             </Button>
             <Button type="submit" variant="contained" color="primary">
               Next
             </Button>
-          </div> */}
+          </div>
         </form>
       </FormProvider>
     </>
