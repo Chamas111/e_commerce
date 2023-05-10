@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from "react";
-import useStyles from "./styles";
-import AddressForm from "../AddressForm";
-import PaymentForm from "../PaymentForm";
 import {
   Paper,
   Stepper,
@@ -12,8 +9,12 @@ import {
   Divider,
   Button,
 } from "@mui/material";
-import { commerce } from "../../../lib/commerce";
 import { Link } from "react-router-dom";
+import { commerce } from "../../../lib/commerce";
+import AddressForm from "../AddressForm";
+import PaymentForm from "../PaymentForm";
+
+import "./styles.css";
 const steps = ["Shipping address", "Payment details"];
 
 const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
@@ -21,7 +22,6 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
   const [checkoutToken, setCheckoutToken] = useState(null);
   const [isFinished, setIsFinished] = useState(false);
   const [shippingData, setShippingData] = useState({});
-  const classes = useStyles();
 
   const Form = () =>
     activeStep === 0 ? (
@@ -49,7 +49,7 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
             Thank you for your purchase, {order.customer.firstname}{" "}
             {order.customer.lastname}!
           </Typography>
-          <Divider className={classes.divider} />
+          <Divider className="divider" />
           <Typography variant="subtitle2">
             Order ref: {order.customer_reference}
           </Typography>
@@ -63,7 +63,7 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
       <>
         <div>
           <Typography variant="h5">Thank you for your purchase</Typography>
-          <Divider className={classes.divider} />
+          <Divider className="divider" />
         </div>
         <br />
         <Button component={Link} variant="outlined" type="button" to="/">
@@ -71,7 +71,7 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
         </Button>
       </>
     ) : (
-      <div className={classes.spinner}>
+      <div className="spinner">
         <CircularProgress />
       </div>
     );
@@ -96,7 +96,7 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
         });
         console.log(token);
         setCheckoutToken(token);
-      } catch {
+      } catch (error) {
         console.log(error);
       }
     };
@@ -114,19 +114,18 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
 
   const next = (data) => {
     setShippingData(data);
-
     nextStep();
   };
 
   return (
     <>
-      <div className={classes.toolbar} />
-      <main className={classes.layout}>
-        <Paper className={classes.paper}>
+      <div className="toolbar" />
+      <main className="layout">
+        <Paper className="paper">
           <Typography variant="h4" align="center">
             Checkout
           </Typography>
-          <Stepper activeStep={activeStep} className={classes.stepper}>
+          <Stepper activeStep={activeStep} className="stepper">
             {steps.map((step) => (
               <Step key={step}>
                 <StepLabel>{step}</StepLabel>

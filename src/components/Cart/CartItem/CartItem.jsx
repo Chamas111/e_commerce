@@ -1,33 +1,24 @@
 import React from "react";
-import {
-  Typography,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-} from "@mui/material";
-
-import useStyles from "./Styles";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import "./Styles.css";
 
 const CartItem = ({ item, handleRemoveFromCart, handleUpdateCartQty }) => {
-  const classes = useStyles();
-  console.log("item", item);
   return (
     <Card className="cart-item">
-      <CardMedia
-        image={item.image.url}
-        alt={item.name}
-        className={classes.media}
-      />
-      <CardContent className={classes.cardContent}>
+      <CardMedia image={item.image.url} alt={item.name} className="media" />
+      <CardContent className="cardContent">
         <Typography variant="h5">{item.name}</Typography>
         <Typography variant="h6">
           {item.line_total.formatted_with_symbol}
         </Typography>
       </CardContent>
-      <CardActions className={classes.cardActions}>
-        <div className={classes.buttons}>
+      <CardActions className="cardActions">
+        <div className="buttons">
           <Button
             type="button"
             size="small"

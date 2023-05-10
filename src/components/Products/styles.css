@@ -1,0 +1,13 @@
+.toolbar {
+  /* CSS rules for .toolbar */
+}
+
+.content {
+  flex-grow: 1;
+  background-color: blueviolet;
+  padding: 3px;
+}
+
+.root {
+  flex-grow: 1;
+}
