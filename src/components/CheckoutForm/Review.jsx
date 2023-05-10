@@ -1,6 +1,5 @@
 import React from "react";
 import { Typography, List, ListItem, ListItemText } from "@mui/material";
-
 const Review = ({ checkoutToken }) => (
   <>
     <Typography variant="h6" gutterBottom>

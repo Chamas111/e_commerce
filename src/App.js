@@ -15,56 +15,54 @@ function App() {
   }, []);
 
   const fetchProducts = async () => {
-    try {
-      const { data } = await commerce.products.list();
-      setProducts(data);
-    } catch (error) {
-      console.log("Error fetching products: ", error);
-    }
+    const { data } = await commerce.products.list();
+    setProducts(data);
   };
 
   const fetchCart = async () => {
-    try {
-      setCart(await commerce.cart.retrieve());
-    } catch (error) {
-      console.log("Error fetching cart: ", error);
-    }
+    setCart(await commerce.cart.retrieve());
   };
 
   const handleAddToCart = async (productId, quantity) => {
     try {
-      const { cart } = await commerce.cart.add(productId, quantity);
-      setCart(cart);
+      const response = await commerce.cart.add(productId, quantity);
+      setCart(response);
     } catch (error) {
       console.log("Error adding to cart: ", error);
     }
   };
 
-  const handleUpdateCartQty = async (lineItemId, quantity) => {
+  const handleUpdateCartQty = async (productId, quantity) => {
     try {
-      const { cart } = await commerce.cart.update(lineItemId, { quantity });
-      setCart(cart);
+      const response = await commerce.cart.update(productId, { quantity });
+      setCart(response);
     } catch (error) {
-      console.log("Error updating cart: ", error);
+      console.log("Error empty the cart: ", error);
     }
   };
 
-  const handleRemoveFromCart = async (lineItemId) => {
+  const handleRemoveFromCart = async (productId) => {
     try {
-      const { cart } = await commerce.cart.remove(lineItemId);
-      setCart(cart);
+      const response = await commerce.cart.remove(productId);
+      setCart(response);
     } catch (error) {
-      console.log("Error removing from cart: ", error);
+      console.log("Error removing the item: ", error);
     }
   };
 
   const handleEmptyCart = async () => {
     try {
-      const { cart } = await commerce.cart.empty();
-      setCart(cart);
+      const response = await commerce.cart.empty();
+      setCart(response);
     } catch (error) {
-      console.log("Error emptying cart: ", error);
+      console.log("Error empty the cart: ", error);
     }
+  };
+
+  const refreshCart = async () => {
+    const newCart = await commerce.cart.refresh();
+
+    setCart(newCart);
   };
 
   const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
@@ -73,22 +71,15 @@ function App() {
         checkoutTokenId,
         newOrder
       );
+
       setOrder(incomingOrder);
+
       refreshCart();
     } catch (error) {
       setErrorMessage(error.data.error.message);
     }
   };
 
-  const refreshCart = async () => {
-    try {
-      const newCart = await commerce.cart.refresh();
-      setCart(newCart);
-    } catch (error) {
-      console.log("Error refreshing cart: ", error);
-    }
-  };
-  //new
   return (
     <Router>
       <div>
@@ -104,10 +95,10 @@ function App() {
             path="/cart"
             element={
               <Cart
-                cart={cart}
                 handleUpdateCartQty={handleUpdateCartQty}
                 handleRemoveFromCart={handleRemoveFromCart}
                 handleEmptyCart={handleEmptyCart}
+                cart={cart}
               />
             }
           />
