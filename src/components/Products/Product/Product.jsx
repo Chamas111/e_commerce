@@ -8,20 +8,18 @@ import {
   IconButton,
 } from "@mui/material";
 import { AddShoppingCart } from "@mui/icons-material";
-import useStyles from "./styles";
+import "./styles.css";
 
 const Product = ({ product, onAddToCart }) => {
-  const classes = useStyles();
-
   return (
-    <Card className={classes.root}>
+    <Card className="root">
       <CardMedia
-        className={classes.media}
+        className="media"
         image={product.image.url}
         title={product.name}
       />
       <CardContent>
-        <div className={classes.cardContent}>
+        <div className="cardContent">
           <Typography variant="h5" gutterBottom>
             {product.name}
           </Typography>
@@ -37,7 +35,7 @@ const Product = ({ product, onAddToCart }) => {
         />
       </CardContent>
 
-      <CardActions disableSpacing className={classes.cardActions}>
+      <CardActions disableSpacing className="cardActions">
         <IconButton
           aria-label="Add to Cart"
           onClick={() => onAddToCart(product.id, 1)}

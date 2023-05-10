@@ -2,8 +2,7 @@ import React from "react";
 import { Container, Typography, Button, Grid } from "@mui/material";
 import CartItem from "./CartItem/CartItem";
 import { Link } from "react-router-dom";
-
-import useStyles from "./styles";
+import "./styles.css";
 
 const Cart = ({
   cart,
@@ -11,12 +10,10 @@ const Cart = ({
   handleRemoveFromCart,
   handleEmptyCart,
 }) => {
-  const classes = useStyles();
-  console.log("fffffffff", cart);
   const EmptyCart = () => (
     <Typography variant="subtitle1">
-      You have no items in your shopping cart,
-      <Link to="/" className={classes.link}>
+      You have no items in your shopping cart,{" "}
+      <Link to="/" className="link">
         start adding some
       </Link>
       !
@@ -36,13 +33,13 @@ const Cart = ({
           </Grid>
         ))}
       </Grid>
-      <div className={classes.cardDetails}>
+      <div className="cardDetails">
         <Typography variant="h4">
           Subtotal: {cart.subtotal.formatted_with_symbol}
         </Typography>
         <div>
           <Button
-            className={classes.emptyButton}
+            className="emptyButton"
             size="large"
             type="button"
             variant="contained"
@@ -52,7 +49,6 @@ const Cart = ({
             Empty cart
           </Button>
           <Button
-            className={classes.checkoutButton}
             size="large"
             type="button"
             variant="contained"
@@ -66,14 +62,16 @@ const Cart = ({
       </div>
     </>
   );
+
   if (!cart.line_items) return "Loading...";
+
   return (
     <Container>
-      <div className={classes.toolbar} />
-      <Typography className={classes.title} variant="h3" gutterBottom>
+      <div className="toolbar" />
+      <Typography variant="h3" gutterBottom>
         Your Shopping Cart
       </Typography>
-      {!cart.line_items.length ? EmptyCart() : FilledCart()}
+      {!cart.line_items.length ? <EmptyCart /> : <FilledCart />}
     </Container>
   );
 };
