@@ -88,7 +88,7 @@ function App() {
       console.log("Error refreshing cart: ", error);
     }
   };
-
+  //new
   return (
     <Router>
       <div>
