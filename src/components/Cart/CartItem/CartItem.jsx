@@ -8,6 +8,7 @@ import CardMedia from "@mui/material/CardMedia";
 import "./Styles.css";
 
 const CartItem = ({ item, handleRemoveFromCart, handleUpdateCartQty }) => {
+  console.log("item", item);
   return (
     <Card className="cart-item">
       <CardMedia image={item.image.url} alt={item.name} className="media" />

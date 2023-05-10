@@ -77,16 +77,16 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
     );
 
   /*   if (error) {
-    Confirmation = () => (
-      <>
-        <Typography variant="h5">Error: {error}</Typography>
-        <br />
-        <Button component={Link} variant="outlined" type="button" to="/">
-          Back to home
-        </Button>
-      </>
-    );
-  } */
+      Confirmation = () => (
+        <>
+          <Typography variant="h5">Error: {error}</Typography>
+          <br />
+          <Button component={Link} variant="outlined" type="button" to="/">
+            Back to home
+          </Button>
+        </>
+      );
+    } */
 
   useEffect(() => {
     const generateToken = async () => {
@@ -96,7 +96,7 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
         });
         console.log(token);
         setCheckoutToken(token);
-      } catch (error) {
+      } catch {
         console.log(error);
       }
     };
@@ -114,6 +114,7 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
 
   const next = (data) => {
     setShippingData(data);
+
     nextStep();
   };
 

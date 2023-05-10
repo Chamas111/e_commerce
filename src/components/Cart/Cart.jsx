@@ -10,9 +10,10 @@ const Cart = ({
   handleRemoveFromCart,
   handleEmptyCart,
 }) => {
+  console.log("fffffffff", cart);
   const EmptyCart = () => (
     <Typography variant="subtitle1">
-      You have no items in your shopping cart,{" "}
+      You have no items in your shopping cart,
       <Link to="/" className="link">
         start adding some
       </Link>
@@ -49,6 +50,7 @@ const Cart = ({
             Empty cart
           </Button>
           <Button
+            className="checkoutButton"
             size="large"
             type="button"
             variant="contained"
@@ -62,16 +64,14 @@ const Cart = ({
       </div>
     </>
   );
-
   if (!cart.line_items) return "Loading...";
-
   return (
     <Container>
       <div className="toolbar" />
-      <Typography variant="h3" gutterBottom>
+      <Typography className="title" variant="h3" gutterBottom>
         Your Shopping Cart
       </Typography>
-      {!cart.line_items.length ? <EmptyCart /> : <FilledCart />}
+      {!cart.line_items.length ? EmptyCart() : FilledCart()}
     </Container>
   );
 };
