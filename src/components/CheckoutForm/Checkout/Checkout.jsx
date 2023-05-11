@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 import { commerce } from "../../../lib/commerce";
 import AddressForm from "../AddressForm";
 import PaymentForm from "../PaymentForm";
-
+import CssBaseline from "@mui/material/CssBaseline";
 import "./styles.css";
 const steps = ["Shipping address", "Payment details"];
 
@@ -120,6 +120,7 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
 
   return (
     <>
+      <CssBaseline />
       <div className="toolbar" />
       <main className="layout">
         <Paper className="paper">

@@ -11,7 +11,13 @@ const CartItem = ({ item, handleRemoveFromCart, handleUpdateCartQty }) => {
   console.log("item", item);
   return (
     <Card className="cart-item">
-      <CardMedia image={item.image.url} alt={item.name} className="media" />
+      <CardMedia
+        component="img"
+        height="300"
+        image={item.image.url}
+        alt={item.name}
+        sx={{ padding: "1em 1em 0 0", objectFit: "contain" }}
+      />
       <CardContent className="cardContent">
         <Typography variant="h5">{item.name}</Typography>
         <Typography variant="h6">
