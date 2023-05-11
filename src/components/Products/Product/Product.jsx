@@ -12,12 +12,16 @@ import "./styles.css";
 
 const Product = ({ product, onAddToCart }) => {
   return (
-    <Card className="root">
+    <Card raised className="root">
       <CardMedia
-        className="media"
+        component="img"
+        height="400"
         image={product.image.url}
+        alt={product.name}
         title={product.name}
+        sx={{ padding: "1em 1em 0 0", objectFit: "contain" }}
       />
+
       <CardContent>
         <div className="cardContent">
           <Typography variant="h5" gutterBottom>

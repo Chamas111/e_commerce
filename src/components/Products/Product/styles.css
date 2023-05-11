@@ -3,8 +3,11 @@
 }
 
 .media {
-  height: 0;
+  max-height: 50%;
   padding-top: 56.25%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cardActions {
